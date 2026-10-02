@@ -12,6 +12,7 @@ from PIL import Image
 import prompts
 import gemini_utils
 import telegram_utils
+import pdf_utils
 
 
 class TestPhase1StreamlitApp(unittest.TestCase):
@@ -26,6 +27,7 @@ class TestPhase1StreamlitApp(unittest.TestCase):
             self.assertIn("google-genai", content)
             self.assertIn("Pillow", content)
             self.assertIn("python-telegram-bot", content)
+            self.assertIn("reportlab", content)
 
     def test_gitignore_contains_secrets_and_venv(self):
         self.assertTrue(os.path.exists(".gitignore"), ".gitignore should exist")
@@ -149,6 +151,22 @@ class TestPhase9SummaryFormat(unittest.TestCase):
         self.assertIn("⭐ Important Points:", summary_text)
         self.assertIn("📌 Key Terms:", summary_text)
         self.assertIn("📝 Quick Revision:", summary_text)
+
+
+class TestPhase10PdfGeneration(unittest.TestCase):
+    def test_create_study_pdf(self):
+        sample_summary = (
+            "📚 Study Summary\n\n"
+            "Topic:\nPhotosynthesis\n\n"
+            "🧠 Simple Explanation:\nProcess plants use to make food.\n\n"
+            "⭐ Important Points:\n- Uses sunlight, water, and CO2\n- Produces glucose and O2\n\n"
+            "📌 Key Terms:\n- Chlorophyll: Green pigment\n\n"
+            "📝 Quick Revision:\nFormula: 6CO2 + 6H2O -> C6H12O6 + 6O2"
+        )
+        pdf_bytes = pdf_utils.create_study_pdf("Alice", sample_summary)
+        self.assertIsInstance(pdf_bytes, bytes)
+        self.assertGreater(len(pdf_bytes), 100)
+        self.assertTrue(pdf_bytes.startswith(b"%PDF"))
 
 
 if __name__ == "__main__":

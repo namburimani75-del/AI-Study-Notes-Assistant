@@ -1,3 +1,4 @@
+
 # 🎓 AI Study Notes Assistant
 
 > **Turn your study material into an interactive AI tutor.**
@@ -113,3 +114,7 @@ python -m unittest test_assistant.py test_apptest.py -v
 ## 🔒 Security Best Practices
 - Never commit `.streamlit/secrets.toml` or `.env` files to git.
 - Verify `.gitignore` includes `secrets.toml` and `venv/`.
+=======
+# AI-Study-Notes-Assistant
+An AI-powered study assistant that analyzes study materials with Gemini Vision, answers questions, sends summaries to Telegram, and generates PDF notes.
+>>>>>>> da5563073f2b7a8d132b3d3a6504e46027bf2b7a
