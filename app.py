@@ -339,7 +339,8 @@ else:
             )
         else:
             st.caption("Summary preview will appear here once study material is analyzed.")
-            # ----------------- SECTION 6: PDF EXPORT -----------------
+
+# ----------------- SECTION 6: PDF EXPORT -----------------
 st.markdown("---")
 st.subheader("📄 Export Study Notes")
 
